@@ -7,14 +7,14 @@ class Wallet {
 }
 
 
-class Prick  {
+class Prick {
   constructor(name: string, wallets?: Wallet[], isInBathroom: boolean = false) {
     this.name = name
     this.alive = true
     this.wallets = wallets || [new Wallet()]
     this.isInBathroom = isInBathroom
   }
-  
+
   name: string
   alive: boolean
   wallets: Wallet[]
@@ -25,30 +25,29 @@ class Prick  {
   isInRestaurant: boolean = true
   isInBathroom: boolean
 
-  private randomize(min: number, max: number) {
-    return Math.floor(Math.random() * (max - min + 1) + min) === max - 7
-  }
-  
-  movesWhenTheyShouldnt() {
-    return this.randomize(1, 10000)
+  private simulateOdds(successProbability: number) {
+    return Math.random() < successProbability
   }
 
-  isHero(){
-    return this.randomize(1, 10000)
+  movesWhenTheyShouldnt() {
+    return this.simulateOdds(0.0001)
+  }
+
+  isHero() {
+    return this.simulateOdds(0.0001)
   }
 
   isVigilante() {
-    return this.randomize(1, 10000)
+    return this.simulateOdds(0.0001)
   }
-  
+
   execute(prick: Prick) {
     prick.alive = false
   }
-  
-  executeEveryOneOfYouMotherfuckers(pricks: Prick[])  {
+
+  executeEveryOneOfYouMotherfuckers(pricks: Prick[]) {
     pricks.forEach(this.execute)
   }
-  
 
   collectWallets(pricks: Prick[]) {
     pricks.forEach(prick => {
@@ -76,10 +75,10 @@ class Prick  {
 
     if (matchingWalletIndex > -1) {
       prick.wallets.push(this.wallets[matchingWalletIndex])
-      this.wallets = this.wallets.splice(matchingWalletIndex, 1) 
+      this.wallets = this.wallets.splice(matchingWalletIndex, 1)
     }
   }
-  
+
   leaveRestaurant() {
     this.isInRestaurant = false
   }
@@ -87,7 +86,7 @@ class Prick  {
   exitBathroom() {
     this.isInBathroom = false
   }
-  
+
   sayColdBloodedShit() {
     console.log(`There’s a passage I got memorized.
 Ezekiel 25:17. The path of the
