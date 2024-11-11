@@ -11,7 +11,7 @@ function playScene() {
   const manager: Prick = new Prick('Manager')
   const pricks: Prick[] = Array.from({ length: 50 }, (_, i) => new Prick(`customer_prick_${i}`))
 
-  if (pricks.some((prick: Prick) => prick.movesWhenTheyShouldnt())) {
+  if (pricks.some((prick: Prick) => prick.moves())) {
     honeyBunny.executeEveryOneOfYouMotherfuckers([...pricks, manager, jules])
     console.log('a prick moved. every last one of you motherfuckers executed.')
   }

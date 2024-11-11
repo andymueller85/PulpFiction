@@ -22,7 +22,7 @@ export class Prick {
     return Math.random() < successProbability
   }
 
-  movesWhenTheyShouldnt() {
+  moves() {
     return this.simulateOdds(0.0001)
   }
 
